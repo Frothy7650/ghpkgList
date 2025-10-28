@@ -1,3 +1,12 @@
 {
-  "BCB": "https://github.com/Frothy7650/BCB.git"
+  "projects": [
+    {
+      "name": "BCB",
+      "url": "https://github.com/Frothy7650/BCB/"
+    },
+    {
+      "name": "Genproject",
+      "url": "https://github.com/Frothy7650/genproject/"
+    }
+  ]
 }
