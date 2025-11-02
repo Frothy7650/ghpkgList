@@ -11,6 +11,10 @@
     {
       "name": "gengit",
       "url": "https://github.com/Frothy7650/gengit/"
+    },
+    {
+      "name": "test",
+      "url": "https://github.com/Frothy7650/test/"
     }
   ]
 }
