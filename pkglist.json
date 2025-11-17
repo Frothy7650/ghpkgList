@@ -1,24 +1,14 @@
 {
   "projects": [
     {
-      "name": "BCB",
-      "version": "1.0.0",
-      "url": "https://github.com/Frothy7650/BCB/"
-    },
-    {
-      "name": "genproject",
-      "version": "1.0.0",
-      "url": "https://github.com/Frothy7650/genproject/"
-    },
-    {
-      "name": "gengit",
-      "version": "1.0.0",
-      "url": "https://github.com/Frothy7650/gengit/"
-    },
-    {
       "name": "test_ghpkg",
       "version": "1",
       "url": "https://github.com/Frothy7650/test/"
+    },
+    {
+      "name": "BCB",
+      "version": "v1.0.0",
+      "url": "https://github.com/Frothy7650/BCBv2/"
     }
   ]
 }
