@@ -3,17 +3,12 @@
     {
       "name": "test_ghpkg",
       "version": "2",
-      "url": "https://github.com/Frothy7650/test/"
+      "url": "https://github.com/Frothy7650/test_ghpkg/"
     },
     {
       "name": "BCB",
       "version": "v1.0.0",
       "url": "https://github.com/Frothy7650/BCBv2/"
-    },
-    {
-      "name": "curl",
-      "version": "8.17.0",
-      "url": "https://github.com/Frothy7650/curl/"
     }
   ]
 }
