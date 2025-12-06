@@ -3,12 +3,17 @@
     {
       "name": "test_ghpkg",
       "version": "2",
-      "url": "https://github.com/Frothy7650/test_ghpkg/"
+      "url": "https://github.com/Frothy7650/test_ghpkg.git"
     },
     {
       "name": "tcc",
-      "version": "v0.9.27",
-      "url": "https://github.com/Frothy7650/tcc/"
+      "version": "0.9.27",
+      "url": "https://github.com/Frothy7650/tcc.git"
+    },
+    {
+      "name": "curl",
+      "version": "8.17.0",
+      "url": "https://github.com/Frothy7650/curl.git"
     }
   ]
 }
