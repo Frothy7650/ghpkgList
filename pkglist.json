@@ -2,7 +2,7 @@
   "projects": [
     {
       "name": "test_ghpkg",
-      "version": "2.1",
+      "version": "3",
       "url": "https://github.com/Frothy7650/test_ghpkg.git"
     },
     {
