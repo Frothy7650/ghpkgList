@@ -18,43 +18,44 @@ struct Root_project {
 }
 
 struct Root_pkglist {
-  projects []Project
+  projects []Root_project
 }
 
 fn main() {
   println("Checking for updates...")
 
-  // Load pkglist
-  mut pkglist_raw := os.read_file("pkglist.json") or { eprintln("Failed to read pkglist.json: $err") return }
-  mut pkglist_json := json.decode(Pkglist, pkglist_raw) or { eprintln("Failed to decode pkglist.json: $err") return }
+  // Load local pkglist
+  mut pkglist_raw := os.read_file("pkglist.json") or { eprintln("Failed to read pkglist.json: $err"); return }
+  mut pkglist_json := json.decode(Pkglist, pkglist_raw) or { eprintln("Failed to decode pkglist.json: $err"); return }
 
-  // Load pkglist_root
-  pkglist_root_raw := os.read_file("pkglist_root.json") or { eprintln("Failed to read pkglist_root.json: $err") return }
-  pkglist_root_json := json.decode(Root_pkglist, pkglist_root_raw) or { eprintln("Failed to decode pkglist_root.json: $err") return }
+  // Load root pkglist
+  pkglist_root_raw := os.read_file("pkglist_root.json") or { eprintln("Failed to read pkglist_root.json: $err"); return }
+  pkglist_root_json := json.decode(Root_pkglist, pkglist_root_raw) or { eprintln("Failed to decode pkglist_root.json: $err"); return }
 
-  // Create a map from project name → URL
-  mut url_map := map[string]string{}
-  for root_project in pkglist_root_json.projects {
-    url_map[root_project.name] = root_project.url
+  // Map root URLs by project name
+  mut root_url_map := map[string]string{}
+  for project in pkglist_root_json.projects {
+    root_url_map[project.name] = project.url
   }
 
-  // Iterate through projects
+  // Update only the version in local pkglist
   for mut project in pkglist_json.projects {
-    if project.name in url_map {
-      project.url = url_map[project.name] // get URL from root pkglist
-      latest := get_latest_tag(project.url)
-      if latest != project.version {
-        project.version = latest
-        println("${project.name} updated to ${latest}")
+    if root_url := root_url_map[project.name] {
+      latest_tag := get_latest_tag(root_url)
+      if latest_tag != "" {
+        project.version = latest_tag  // update version only
+        println("Updated $project.name to version $latest_tag")
+      } else {
+        println("No tags found for $project.name")
       }
     } else {
-      eprintln("No URL found for project: ${project.name}")
+      println("No root URL found for $project.name")
     }
   }
 
-  // Write back
-  pkglist_raw = json.encode_pretty(pkglist_json)
-  os.write_file("pkglist.json", pkglist_raw) or { eprintln("Failed to write pkglist.json: $err") return }
+  // Write updated pkglist back to disk
+  updated_json := json.encode_pretty(pkglist_json)
+  os.write_file("pkglist.json", updated_json) or { eprintln("Failed to write updated pkglist.json: $err") }
 }
 
 fn get_latest_tag(url string) string {

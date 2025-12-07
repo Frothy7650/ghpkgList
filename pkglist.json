@@ -1,8 +1,8 @@
 {
 	"projects":	[{
 			"name":	"test_ghpkg",
-			"version":	"",
-			"url":	"https://github.com/Frothy7650/test.git"
+			"version":	"v1.1",
+			"url":	"https://github.com/Frothy7650/test_ghpkg.git"
 		}, {
 			"name":	"tcc",
 			"version":	"release_0_9_27",
