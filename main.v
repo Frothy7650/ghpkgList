@@ -58,22 +58,12 @@ fn main() {
   os.write_file("pkglist.json", updated_json) or { eprintln("Failed to write updated pkglist.json: $err") }
 }
 
-fn get_latest_tag(url string) string {
-  result := os.execute('git ls-remote --refs --tags ${url}')
-  if result.exit_code != 0 {
-    eprintln("Failed to fetch tags from ${url}")
-    return ""
-  }
-  lines := result.output.trim_space().split("\n")
-  if lines.len == 0 {
-    return ""
-  }
-  latest_tag_line := lines.last()
-  // git output: <hash>\trefs/tags/<tagname>
-  parts := latest_tag_line.split("\t")
-  if parts.len < 2 {
-    return ""
-  }
-  tag := parts[1].all_after("refs/tags/")
-  return tag
+fn get_latest_tag(repo_url string) string {
+    cmd := 'git ls-remote --tags $repo_url | awk -F/ \'{print \$NF}\' \
+        | grep -Eo \'[0-9]+([._][0-9]+){1,2}\' \
+        | sed \'s/_/./g\' \
+        | sort -t. -k1,1n -k2,2n -k3,3n \
+        | tail -n1'
+    result := os.execute('bash -c "$cmd"')
+    return result.output.trim_space()
 }

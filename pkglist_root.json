@@ -8,5 +8,15 @@
 		}, {
 			"name":	"curl",
 			"url":	"https://github.com/curl/curl.git"
+		}, {
+	
+			"name": "tcc_win",
+			"url": "git://repo.or.cz/tinycc.git"
+		}, {
+			"name": "bat",
+			"url": "https://github.com/sharkdp/bat.git"
+		}, {
+			"name": "ripgrep",
+			"url": "https://github.com/BurntSushi/ripgrep.git"
 		}]
 }
